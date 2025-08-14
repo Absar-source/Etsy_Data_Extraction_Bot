@@ -14,10 +14,9 @@ import json
 import os
 
 with open("ip.json", "r", encoding="utf-8") as file:
-    
     proxies = dict(json.load(file))
 proxy_cycle = itertools.cycle(proxies)
-
+print(f"Loaded {len(proxies)} proxies from ip.json")
 def get_next_proxy():
     return next(proxy_cycle)
 
