@@ -13,8 +13,8 @@ import product_detail
 import json
 import os
 
-with open("ip.json", "r", encoding="utf-8") as file:
-    proxies = dict(json.load(file))
+with open("test_ip.json", "r", encoding="utf-8") as file:
+    proxies = json.load(file)
 proxy_cycle = itertools.cycle(proxies)
 print(f"Loaded {len(proxies)} proxies from ip.json")
 def get_next_proxy():
@@ -125,12 +125,12 @@ else:
 def scrape_search(Lid, data):
     proxy = get_next_proxy()
     try:
-        driver = open_browser(data["url"],proxy)
+        driver = open_browser(data["link"],proxy)
         if  driver:
             data = product_detail.get(driver,data)
             return lid,data
         else:
-            print(f"Failed to open browser for {data['url']}")
+            print(f"Failed to open browser for {data['link']}")
             return None , None
         # search_query = search.replace(" ", "+")
         # driver.get(f"https://www.etsy.com/search?q={search_query}&ref=search_bar")
